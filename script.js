@@ -12,8 +12,6 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
-document.querySelector('.number').textContent = secretNumber;
-
 checkBtn.addEventListener('click', function () {
   const guess = Number(inputVal.value);
 
@@ -44,6 +42,7 @@ checkBtn.addEventListener('click', function () {
 
 resetBtn.addEventListener('click', function () {
   score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
   secretNumberBox.textContent = '?';
   inputVal.value = '';
   message.textContent = 'Start guessing...';
