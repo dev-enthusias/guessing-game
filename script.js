@@ -12,6 +12,8 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
+document.querySelector('.number').textContent = secretNumber;
+
 checkBtn.addEventListener('click', function () {
   const guess = Number(inputVal.value);
 
@@ -28,9 +30,15 @@ checkBtn.addEventListener('click', function () {
       highscoreLabel.textContent = highscore;
     }
   } else if (guess !== secretNumber) {
-    message.textContent = guess > secretNumber ? 'Too High' : 'Too Low';
-    score--;
-    scoreLabel.textContent = score;
+    if (score > 1) {
+      message.textContent = guess > secretNumber ? 'Too High' : 'Too Low';
+      score--;
+      scoreLabel.textContent = score;
+    } else {
+      score = 0;
+      scoreLabel.textContent = score;
+      message.textContent = 'Try again!';
+    }
   }
 });
 
@@ -40,4 +48,6 @@ resetBtn.addEventListener('click', function () {
   inputVal.value = '';
   message.textContent = 'Start guessing...';
   scoreLabel.textContent = score;
+  secretNumberBox.style.width = '15rem';
+  document.querySelector('body').style.backgroundColor = '#222';
 });
